@@ -1,20 +1,26 @@
 # YouTube Media Downloader
 
-Este repositório contém um script Python para baixar mídias do YouTube, utilizando a biblioteca `yt-dlp` em conjunto com `ffmpeg`. Ele oferece uma interface gráfica simples usando o `Tkinter` para facilitar o uso.
+Este repositório contém um script Python para baixar mídias do YouTube, utilizando a biblioteca `yt-dlp` em conjunto com `ffmpeg`. Ele oferece uma interface gráfica intuitiva usando `Tkinter`, facilitando o uso para qualquer usuário.
 
 ## Recursos
 
-- Baixa vídeos do YouTube no formato MP4.
-- Extrai áudio de vídeos do YouTube no formato MP3.
+- Baixa vídeos do YouTube nos formatos MP4 e MKV.
+- Extrai áudio de vídeos do YouTube nos formatos MP3 e WAV.
 - Suporta download de playlists inteiras.
+- Permite a escolha da qualidade do vídeo e do áudio.
+- Exibe o progresso do download em tempo real.
+- Interface simples e funcional para seleção de formatos e qualidades.
 
 ## Requisitos
 
 Antes de executar o script, certifique-se de ter o seguinte instalado no seu sistema:
 
-1. Python 3.x: [Download Python](https://www.python.org/downloads/)
-2. yt-dlp: Pode ser instalado com o comando `pip install yt-dlp`.
-3. FFmpeg: Baixe e instale a partir de [FFmpeg Downloads](https://ffmpeg.org/download.html). Certifique-se de que o caminho do FFmpeg está correto no script (`C:\ffmpeg\bin\ffmpeg.exe`).
+1. **Python 3.x**: [Download Python](https://www.python.org/downloads/)
+2. **yt-dlp**: Pode ser instalado com o comando:
+   ```bash
+   pip install yt-dlp
+   ```
+3. **FFmpeg**: Baixe e instale a partir de [FFmpeg Downloads](https://ffmpeg.org/download.html). Certifique-se de que o caminho do FFmpeg está configurado corretamente no sistema.
 
 ## Como executar
 
@@ -22,36 +28,45 @@ Siga os passos abaixo para executar a aplicação:
 
 1. Clone este repositório em sua máquina:
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
+   git clone https://github.com/lsouza-dev/yt-downloader.git
+   cd yt-downloader
    ```
 
 2. Instale as dependências necessárias:
    ```bash
-   pip install yt-dlp
+   pip install -r requirements.txt
    ```
 
-3. Verifique se o FFmpeg está instalado e o caminho está correto no script.
+3. Verifique se o FFmpeg está instalado e o caminho está configurado corretamente no sistema.
 
-4. Execute o script:
+4. Execute o script principal:
    ```bash
-   python nome_do_script.py
+   python main.py
    ```
 
 ## Como usar
 
 1. Após iniciar a aplicação, insira a URL da playlist do YouTube ou URLs individuais separadas por vírgula.
-2. Selecione o formato desejado (MP4 ou MP3).
-3. Clique no botão "Download" para iniciar o processo.
-4. Os arquivos baixados serão salvos na área de trabalho, dentro das pastas "vídeos" ou "músicas" conforme o formato escolhido.
+2. Selecione o formato desejado (MP4, MKV, MP3 ou WAV).
+3. Escolha a qualidade preferida para o download.
+4. Clique no botão "Download" para iniciar o processo.
+5. Os arquivos baixados serão salvos na pasta "Downloads" do seu usuário, dentro das subpastas "Vídeos" ou "Músicas", conforme o formato escolhido.
 
 ## Estrutura do Projeto
 
 ```
-├── nome_do_script.py   # Script principal
+├── main.py             # Script principal
+├── requirements.txt    # Arquivo de dependências
+├── gui.py              # Interface gráfica da aplicação
+├── downloader.py       # Lógica de download e conversão de arquivos
 └── README.md           # Documentação
 ```
 
 ## Contribuição
 
 Contribuições são bem-vindas! Por favor, abra uma issue ou envie um pull request para discutir quaisquer alterações que você gostaria de fazer.
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE), permitindo seu uso, modificação e distribuição livremente.
+
