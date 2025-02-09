@@ -1,6 +1,6 @@
 # YouTube Media Downloader
 
-Este repositório contém um script Python para baixar mídias do YouTube, utilizando a biblioteca `yt-dlp` em conjunto com `ffmpeg`. Ele oferece uma interface gráfica intuitiva usando `Tkinter`, facilitando o uso para qualquer usuário.
+Este repositório contém um script Python para baixar mídias do YouTube, utilizando a biblioteca `yt-dlp` em conjunto com `ffmpeg`. Ele oferece uma interface gráfica simples usando o `Tkinter` para facilitar o uso.
 
 ## Recursos
 
@@ -9,7 +9,6 @@ Este repositório contém um script Python para baixar mídias do YouTube, utili
 - Suporta download de playlists inteiras.
 - Permite a escolha da qualidade do vídeo e do áudio.
 - Exibe o progresso do download em tempo real.
-- Interface simples e funcional para seleção de formatos e qualidades.
 
 ## Requisitos
 
@@ -39,7 +38,7 @@ Siga os passos abaixo para executar a aplicação:
 
 3. Verifique se o FFmpeg está instalado e o caminho está configurado corretamente no sistema.
 
-4. Execute o script principal:
+4. Execute o script:
    ```bash
    python main.py
    ```
@@ -56,17 +55,10 @@ Siga os passos abaixo para executar a aplicação:
 
 ```
 ├── main.py             # Script principal
-├── requirements.txt    # Arquivo de dependências
-├── gui.py              # Interface gráfica da aplicação
-├── downloader.py       # Lógica de download e conversão de arquivos
 └── README.md           # Documentação
 ```
 
 ## Contribuição
 
 Contribuições são bem-vindas! Por favor, abra uma issue ou envie um pull request para discutir quaisquer alterações que você gostaria de fazer.
-
-## Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE), permitindo seu uso, modificação e distribuição livremente.
 
