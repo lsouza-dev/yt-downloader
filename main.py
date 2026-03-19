@@ -20,17 +20,22 @@ def get_download_path(media_type):
     return desktop_path
 
 def validate_ffmpeg():
-    """Valida FFmpeg apenas uma vez por sessão"""
     if _ffmpeg_cache["checked"]:
         return _ffmpeg_cache["valid"], _ffmpeg_cache["path"]
-    
-    ffmpeg_path = "C:\\ffmpeg\\bin\\ffmpeg.exe"
-    is_valid = os.path.isfile(ffmpeg_path)
+
+    base_dir = Path(__file__).resolve().parent
+    ffmpeg_exe = base_dir / "ffmpeg" / "bin" / "ffmpeg.exe"
+
+    is_valid = ffmpeg_exe.is_file()
+
+    # 🔥 aqui está a mudança: pegar a PASTA
+    ffmpeg_dir = ffmpeg_exe.parent if is_valid else None
+
     _ffmpeg_cache["checked"] = True
     _ffmpeg_cache["valid"] = is_valid
-    _ffmpeg_cache["path"] = ffmpeg_path if is_valid else None
-    
-    return is_valid, ffmpeg_path
+    _ffmpeg_cache["path"] = str(ffmpeg_dir) if is_valid else None
+
+    return is_valid, str(ffmpeg_dir) if ffmpeg_dir else None 
 
 def build_download_command(url, media_type, download_path, ffmpeg_path):
     """Constrói o comando yt-dlp otimizado"""
@@ -60,12 +65,16 @@ def download_single_url(url, media_type, download_path, ffmpeg_path, output_queu
             return {"status": "skipped", "url": url, "message": "URL vazia"}
         
         command = build_download_command(url, media_type, download_path, ffmpeg_path)
+        env = os.environ.copy()
+        env["PATH"] = ffmpeg_path + os.pathsep + env["PATH"]
+
         process = subprocess.Popen(
             command,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            bufsize=1
+            bufsize=1,
+            env=env  # 🔥 aqui está a mágica
         )
         
         output_lines = []
