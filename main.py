@@ -42,17 +42,21 @@ def build_download_command(url, media_type, download_path, ffmpeg_path):
     base_command = [
         sys.executable, "-m", "yt_dlp",
         "--yes-playlist",
+        "--geo-bypass",
+        "--age-limit", "99",
+        "--extractor-args", "youtube:player_client=android",  # Change to android
+        "--js-runtimes", "node",
         "--ffmpeg-location", ffmpeg_path,
         "-o", os.path.join(download_path,"%(title)s.%(ext)s"),
         "--no-warnings",
-        "-q",  # Quiet mode para menos output
+        "-q",
         url
     ]
     
     if media_type == "mp3":
         base_command.extend(["-x", "--audio-format", "mp3", "--audio-quality", "192"])
     elif media_type == "mp4":
-        base_command.extend(["-f", "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]"])
+        base_command.extend(["-f", "best"])
         base_command.extend(["--merge-output-format", "mp4"])
     
     return base_command
